@@ -1,0 +1,14 @@
+
+spring:
+  application:
+    name: ddns-service
+
+logging:
+  level:
+    root: info
+    com.imjcker: info
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] %-40.40logger{39} : %X{uuid} %m%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] %-40.40logger{39} : %X{uuid} %m%n"
+  file:
+    name: ${user.dir}/logs/${spring.application.name}.log
