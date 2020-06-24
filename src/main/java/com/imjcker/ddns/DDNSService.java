@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class DDNSService {
         params.put("type", properties.getParams().get("type").toString());
         params.put("name", properties.getParams().get("name").toString());
         String result = HttpClientUtils.get(URL, properties.getHeaders(), params);
-
+        if (StringUtils.isEmpty(result))return;
         JSONObject jsonObject = JSONObject.parseObject(result);
         JSONArray resultArray = jsonObject.getJSONArray("result");
         JSONObject o = (JSONObject) resultArray.get(0);
