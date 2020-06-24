@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "ddns.job.cron",
+      "type": "java.lang.String",
+      "description": "DDNS schedule cron expression."
+  }
+] }

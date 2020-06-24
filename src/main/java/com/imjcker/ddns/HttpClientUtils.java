@@ -153,7 +153,6 @@ public class HttpClientUtils {
     }
 
     public static String get(String url, Map<String, String> headers, Map<String, String> params) {
-        StringBuilder loggerMsg = new StringBuilder();
         // 创建Httpclient对象
         CloseableHttpClient httpclient = HttpClients.createDefault();
         String resultString = "";
@@ -202,7 +201,6 @@ public class HttpClientUtils {
                 }
             }
         }
-        log.info(loggerMsg.toString());
         return resultString;
     }
 

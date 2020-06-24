@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: ddns-service
@@ -12,3 +11,19 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] %-40.40logger{39} : %X{uuid} %m%n"
   file:
     name: ${user.dir}/logs/${spring.application.name}.log
+
+ddns:
+  job:
+    cron: "0 */2 * * * ?"
+  ip-fetch-url: http://ip.sb
+  headers: {
+    X-auth-Email: helloalanturing@icloud.com,
+    X-auth-Key: xxx,
+    Content-Type: application/json
+  }
+  params: {
+    type: A,
+    name: imjcker.com,
+    ttl: 120,
+    proxied: false
+  }
