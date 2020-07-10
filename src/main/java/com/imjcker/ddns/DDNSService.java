@@ -42,8 +42,10 @@ public class DDNSService {
 
         if (!currentLocalIp.trim().equalsIgnoreCase(domainIp.trim())) {
             JSONObject json = new JSONObject(properties.getParams());
+            json.put("content", currentLocalIp);
             String updateResult = HttpClientUtils.putByJson(URL + "/" + id, properties.getHeaders(), json);
             JSONObject updated = JSONObject.parseObject(updateResult);
+//            log.info(updateResult);
             log.info("NDS update result: {}", updated.getBooleanValue("success"));
         }
 

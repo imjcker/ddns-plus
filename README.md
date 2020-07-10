@@ -7,7 +7,7 @@ or run it in docker container:
 
 ```shell
 
-docker run -d --name ddns-cloudflare --restart always imjcker/ddns:latest
+docker run -d --name ddns --restart always imjcker/ddns:latest
 
 ```
 
