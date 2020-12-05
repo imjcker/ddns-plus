@@ -32,7 +32,6 @@ public class DDNSService {
         params.put("type", properties.getParams().get("type").toString());
         params.put("name", properties.getParams().get("name").toString());
         String result = HttpClientUtils.get(URL, properties.getHeaders(), params);
-        log.info(result);
         if (StringUtils.isEmpty(result))return;
         JSONObject jsonObject = JSONObject.parseObject(result);
         JSONArray resultArray = jsonObject.getJSONArray("result");
@@ -44,12 +43,10 @@ public class DDNSService {
         if (!currentLocalIp.trim().equalsIgnoreCase(domainIp.trim())) {
             JSONObject json = new JSONObject(properties.getParams());
             json.put("content", currentLocalIp);
-            json.put("proxied", Boolean.valueOf(json.get("proxied").toString()));
-            log.info(json.toJSONString());
             String updateResult = HttpClientUtils.putByJson(URL + "/" + id, properties.getHeaders(), json);
             JSONObject updated = JSONObject.parseObject(updateResult);
+//            log.info(updateResult);
             log.info("NDS update result: {}", updated.getBooleanValue("success"));
-            log.info(updated.toJSONString());
         }
 
     }
