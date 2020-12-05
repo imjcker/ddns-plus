@@ -1,6 +1,7 @@
 package com.imjcker.ddns;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
@@ -27,5 +28,14 @@ public class DDNSProperties {
     @ConfigurationPropertiesBinding
     public static class Job {
         private String cron;
+    }
+
+    @Data
+    @ToString
+    public static class Params {
+        private String type;
+        private String name;
+        private String ttl;
+        private boolean proxied;
     }
 }
