@@ -19,7 +19,7 @@ public class DDNSProperties {
     @URL
     private String ipFetchUrl;
     private Map<String, String> headers = new HashMap<>();
-    private Map<String, Object> params = new HashMap<>();
+    private Params params = new Params();
 
     /**
      * schedule configuration
@@ -32,6 +32,7 @@ public class DDNSProperties {
 
     @Data
     @ToString
+    @ConfigurationPropertiesBinding
     public static class Params {
         private String type;
         private String name;
