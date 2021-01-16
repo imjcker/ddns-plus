@@ -1,7 +1,9 @@
-package com.imjcker.ddns;
+package com.imjcker.ddns.dns.cloudflare;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.imjcker.ddns.config.DDNSProperties;
+import com.imjcker.ddns.utils.HttpClientUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -29,10 +31,10 @@ public class DDNSService {
         log.info("Current local IP address: {}", currentLocalIp);
 
         Map<String, String> params = new HashMap<>();
-        params.put("type", properties.getParams().getType());
-        params.put("name", properties.getParams().getName());
-        String result = HttpClientUtils.get(URL, properties.getHeaders(), params);
-        if (StringUtils.isEmpty(result))return;
+        params.put("type", ((DnsCloudflare) properties.getDns()).getParams().getType());
+        params.put("name", ((DnsCloudflare) properties.getDns()).getParams().getName());
+        String result = HttpClientUtils.get(URL, ((DnsCloudflare) properties.getDns()).getHeaders(), params);
+        if (StringUtils.isEmpty(result)) return;
         JSONObject jsonObject = JSONObject.parseObject(result);
         JSONArray resultArray = jsonObject.getJSONArray("result");
         JSONObject o = (JSONObject) resultArray.get(0);
@@ -41,11 +43,11 @@ public class DDNSService {
         log.info("Current DNS IP address: {}", domainIp);
 
         if (!currentLocalIp.trim().equalsIgnoreCase(domainIp.trim())) {
-            DDNSProperties.Params params1 = properties.getParams();
+            DnsCloudflare.Params params1 = ((DnsCloudflare) properties.getDns()).getParams();
             JSONObject json = (JSONObject) JSONObject.toJSON(params1);
 
             json.put("content", currentLocalIp);
-            String updateResult = HttpClientUtils.putByJson(URL + "/" + id, properties.getHeaders(), json);
+            String updateResult = HttpClientUtils.putByJson(URL + "/" + id, ((DnsCloudflare) properties.getDns()).getHeaders(), json);
             JSONObject updated = JSONObject.parseObject(updateResult);
             log.info(updateResult);
             log.info("NDS update result: {}", updated.getBooleanValue("success"));

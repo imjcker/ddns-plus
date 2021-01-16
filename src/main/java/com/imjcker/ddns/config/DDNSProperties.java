@@ -1,5 +1,6 @@
-package com.imjcker.ddns;
+package com.imjcker.ddns.config;
 
+import com.imjcker.ddns.core.DNS;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.validator.constraints.URL;
@@ -18,8 +19,8 @@ public class DDNSProperties {
     private Job job;
     @URL
     private String ipFetchUrl;
-    private Map<String, String> headers = new HashMap<>();
-    private Params params = new Params();
+
+    private DNS dns;
 
     /**
      * schedule configuration
@@ -30,13 +31,5 @@ public class DDNSProperties {
         private String cron;
     }
 
-    @Data
-    @ToString
-    @ConfigurationPropertiesBinding
-    public static class Params {
-        private String type;
-        private String name;
-        private String ttl;
-        private boolean proxied;
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.imjcker.ddns;
+package com.imjcker.ddns.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;

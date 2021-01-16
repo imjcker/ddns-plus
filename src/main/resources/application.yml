@@ -16,14 +16,14 @@ ddns:
   job:
     cron: "0 */2 * * * ?"
   ip-fetch-url: http://ip.sb
-  headers:
-    X-auth-Email: ${X-AUTH-EMAIL:helloalanturing@icloud.com}
-    X-auth-Key: ${X-AUTH-KEY:639164cf0ab9e7652ad48ce90c061e787cfa8}
-    Content-Type: ${CONTENT-TYPE:application/json}
-
-  params:
-    type: ${DDNS-TYPE:A}
-    name: ${DDNS-NAME:imjcker.com}
-    ttl: ${DDNS-TTL:120}
-    proxied: ${DDNS-PROXIED:false}
+  dns:
+    headers:
+      X-auth-Email: ${X-AUTH-EMAIL:helloalanturing@icloud.com}
+      X-auth-Key: ${X-AUTH-KEY:639164cf0ab9e7652ad48ce90c061e787cfa8}
+      Content-Type: ${CONTENT-TYPE:application/json}
+    params:
+      type: ${DDNS-TYPE:A}
+      name: ${DDNS-NAME:imjcker.com}
+      ttl: ${DDNS-TTL:120}
+      proxied: ${DDNS-PROXIED:false}
 

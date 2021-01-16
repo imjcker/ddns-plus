@@ -1,5 +1,6 @@
 package com.imjcker.ddns;
 
+import com.imjcker.ddns.config.DDNSProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +11,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 @EnableConfigurationProperties({DDNSProperties.class})
-public class MyApplication {
+public class DdnsApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
+        SpringApplication.run(DdnsApplication.class, args);
     }
 }
